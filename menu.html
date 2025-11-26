@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snake Menu</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="menu-wrapper">
+    <div class="menu-box">
+        <h1 class="title">Snake Game</h1>
+
+        <input type="text" id="username" placeholder="Enter username" class="input">
+
+        <h3 id="menu-highscore" style="margin-top:20px; text-align:center; color:white;">High Score: 0</h3>
+
+        <button id="playBtn" class="play-btn">Play Game</button>
+
+        <h3 style="margin-top:20px; text-align:center; color:white;">Top Players</h3>
+
+        <!-- Primele 3 locuri vizibile -->
+        <ul id="top3" class="mini-board top3-board"></ul>
+
+        <!-- Locurile 4-10 scrollabile -->
+        <div class="scroll-container">
+            <ul id="restLeaderboard" class="mini-board scroll-board"></ul>
+        </div>
+    </div>
+</div>
+
+<script>
+const playBtn = document.getElementById('playBtn');
+const userInput = document.getElementById('username');
+const menuHighscore = document.getElementById('menu-highscore');
+const top3Board = document.getElementById("top3");
+const restBoard = document.getElementById("restLeaderboard");
+
+// Highscore general
+let highScore = localStorage.getItem("high-score") || 0;
+menuHighscore.textContent = `High Score: ${highScore}`;
+
+// Functie populare leaderboard
+function updateMiniLeaderboard() {
+    const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+    top3Board.innerHTML = "";
+    leaderboard.slice(0,3).forEach((p, i) => {
+        let li = document.createElement("li");
+        li.textContent = `${i+1}. ${p.name} - ${p.score}`;
+        top3Board.appendChild(li);
+    });
+
+    restBoard.innerHTML = "";
+    leaderboard.slice(3,10).forEach((p, i) => {
+        let li = document.createElement("li");
+        li.textContent = `${i+4}. ${p.name} - ${p.score}`;
+        restBoard.appendChild(li);
+    });
+}
+
+// initial load
+updateMiniLeaderboard();
+
+// ascultă evenimentul custom pentru live update
+window.addEventListener("leaderboardUpdated", updateMiniLeaderboard);
+
+playBtn.onclick = () => {
+    const name = userInput.value.trim();
+    if(name === "") { alert("Enter username!"); return; }
+    localStorage.setItem("snake-username", name);
+    window.location.href = "index.html";
+};
+</script>
+
+</body>
+</html>

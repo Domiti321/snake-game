@@ -1,0 +1,28 @@
+body { margin:0; padding:0; font-family:sans-serif; background:#1b2236; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+.wrapper { width: 65vmin; height: 70vmin; background: #293447; display:flex; flex-direction:column; border-radius:20px; padding:20px; box-shadow:0 0 15px rgba(0,255,255,0.4),0 0 30px rgba(0,255,255,0.2);}
+.play-board { flex:1; display:grid; grid-template: repeat(30, 1fr) / repeat(30, 1fr); background:#1b2236; border-radius:7px; }
+.play-board .snake { background:#4df5ff; border-radius:4px; box-shadow:0 0 6px #4df5ff;}
+.play-board .food { background:red; border-radius:50%; box-shadow:0 0 6px red;}
+.game-details { color:#b8c6dc; font-size:1.2rem; font-weight:500; display:flex; justify-content:space-between; margin-bottom:10px;}
+
+/* DEATH SCREEN */
+.death-screen { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; }
+.death-screen.hidden { display:none; }
+.death-box { background:#293447; padding:30px; border-radius:15px; text-align:center; color:white; }
+.death-box button { padding:10px 20px; margin:5px; border:none; border-radius:8px; cursor:pointer; background:#4df5ff; font-weight:bold; }
+
+/* MENU */
+.menu-wrapper { display:flex; justify-content:center; align-items:center; height:100vh; width:100vw; }
+.menu-box { background:#293447; padding:30px; border-radius:20px; width:350px; display:flex; flex-direction:column; align-items:center; box-shadow:0 0 15px rgba(0,255,255,0.4),0 0 30px rgba(0,255,255,0.2);}
+.menu-box .title { color:white; margin-bottom:20px; text-align:center; }
+.menu-box .input { width:80%; padding:8px; margin-bottom:10px; border-radius:8px; border:none; }
+.menu-box .play-btn { padding:10px 20px; margin-bottom:15px; border-radius:10px; border:none; background:#4df5ff; cursor:pointer; font-weight:bold; }
+
+/* LEADERBOARD */
+.mini-board { list-style:none; margin:0; padding:0; width:100%; }
+.top3-board li { font-weight:bold; padding:5px 10px; }
+.top3-board li:nth-child(1){ color:gold; } 
+.top3-board li:nth-child(2){ color:silver; } 
+.top3-board li:nth-child(3){ color:#cd7f32; }
+.scroll-container { width:100%; max-height:120px; overflow-y:auto; border-top:1px solid rgba(255,255,255,0.2); margin-top:5px; }
+.scroll-board li { padding:5px 10px; border-bottom:1px solid rgba(255,255,255,0.1); color:white; }
